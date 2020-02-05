@@ -31,12 +31,27 @@ class ProductList extends React.Component {
       },
       formData: null
     };
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave(product) {
+    this.setState(prevState => {
+      let products = prevState.products;
+      products[Math.floor(Math.random() * 1000000 + 1)] = product;
+      return {
+        products
+      };
+    });
   }
 
   render() {
-    return React.createElement(ProductTable, {
+    return React.createElement("div", null, React.createElement(ProductTable, {
       products: this.state.products
-    });
+    }), React.createElement("h3", null, " Add a new product to inventory "), React.createElement("hr", null), React.createElement(ProductForm, {
+      key: JSON.stringify(this.state.formData || {}),
+      formInput: this.state.formData,
+      onSave: this.handleSave
+    }));
   }
 
 }
@@ -73,6 +88,70 @@ class ProductTable extends React.Component {
 
 }
 
+class ProductForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.state = {
+      product: this.props.formInput || Object.assign({}, RESET_VALUES),
+      errors: {}
+    };
+  }
+
+  handleChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState(prevState => {
+      prevState.product[name] = value;
+      return {
+        product: prevState.product
+      };
+    });
+  }
+
+  handleSave(e) {
+    this.props.onSave(this.state.product); // reset the form values to blank after submitting
+
+    this.setState({
+      product: Object.assign({}, RESET_VALUES),
+      errors: {}
+    }); // prevent the form submit event from triggering an HTTP Post
+
+    e.preventDefault();
+  }
+
+  render() {
+    return React.createElement("form", null, React.createElement("label", null, "Category"), React.createElement("input", {
+      type: "text",
+      name: "category",
+      onChange: this.handleChange,
+      value: this.state.product.category
+    }), React.createElement("br", null), React.createElement("label", null, "Price Per Unit "), React.createElement("input", {
+      type: "text",
+      name: "price",
+      onChange: this.handleChange,
+      value: this.state.product.price
+    }), React.createElement("br", null), React.createElement("label", null, "Product Name "), React.createElement("input", {
+      type: "text",
+      name: "name",
+      onChange: this.handleChange,
+      value: this.state.product.name
+    }), React.createElement("br", null), React.createElement("label", null, "Image URL "), React.createElement("input", {
+      type: "text",
+      name: "image",
+      onChange: this.handleChange,
+      value: this.state.product.image
+    }), React.createElement("br", null), React.createElement("input", {
+      type: "submit",
+      value: "Add Product",
+      onClick: this.handleSave
+    }));
+  }
+
+}
+
 var contentNode = document.getElementById('root');
-var inventory = React.createElement("div", null, React.createElement("h1", null, " My Company Inventory "), React.createElement("h3", null, " Showing all available products "), React.createElement("hr", null), React.createElement(ProductList, null), React.createElement("h3", null, " Add a new product to inventory "), React.createElement("hr", null));
+var inventory = React.createElement("div", null, React.createElement("h1", null, " My Company Inventory "), React.createElement("h3", null, " Showing all available products "), React.createElement("hr", null), React.createElement(ProductList, null));
 ReactDOM.render(inventory, contentNode);

@@ -26,10 +26,24 @@ class ProductList extends React.Component {
       },
       formData: null
     }
+    this.handleSave = this.handleSave.bind(this)
+  }
+  handleSave(product) {
+    this.setState((prevState) => {
+      let products = prevState.products
+      products[Math.floor((Math.random() * 1000000) + 1)] = product
+      return { products }
+    })
   }
   render() {
     return (
+      <div>
       <ProductTable products={this.state.products}/>
+      <h3> Add a new product to inventory </h3>
+      <hr/>
+      <ProductForm
+        key={JSON.stringify(this.state.formData || {})} formInput={this.state.formData} onSave={this.handleSave}/>
+      </div>
     )
   }
 }
@@ -77,13 +91,60 @@ class ProductTable extends React.Component {
   }
 }
 
+class ProductForm extends React.Component {
+  constructor(props) {
+    super(props)
+      this.handleChange = this.handleChange.bind(this)
+      this.handleSave = this.handleSave.bind(this)
+      this.state = {
+          product: this.props.formInput || Object.assign({}, RESET_VALUES),
+          errors: {}
+    }
+  }
+
+  handleChange(e) {
+    const target = e.target
+    const value = target.value
+    const name = target.name
+    this.setState((prevState) => {
+        prevState.product[name] = value
+        return { product: prevState.product }
+    })
+  }
+
+  handleSave(e) {
+      this.props.onSave(this.state.product);
+      // reset the form values to blank after submitting
+      this.setState({
+          product: Object.assign({}, RESET_VALUES), 
+          errors: {}
+      })
+      // prevent the form submit event from triggering an HTTP Post
+      e.preventDefault()
+  }
+
+  render () {
+    return (
+        <form>
+            <label>Category</label>
+            <input type="text" name="category" onChange={this.handleChange} value={this.state.product.category} /><br /> 
+            <label>Price Per Unit </label> 
+            <input type="text" name="price" onChange={this.handleChange} value={this.state.product.price} /><br /> 
+            <label>Product Name </label> 
+            <input type="text" name="name" onChange={this.handleChange} value={this.state.product.name} /><br /> 
+            <label>Image URL </label> 
+            <input type="text" name="image" onChange={this.handleChange} value={this.state.product.image} /><br /> 
+            <input type="submit" value="Add Product" onClick={this.handleSave}></input>
+        </form>
+    )
+  }
+}
+
 var contentNode = document.getElementById('root');
 var inventory = <div>
   <h1> My Company Inventory </h1>
   <h3> Showing all available products </h3>
   <hr/>
   <ProductList/>
-  <h3> Add a new product to inventory </h3>
-  <hr/>
 </div>
 ReactDOM.render(inventory, contentNode);
