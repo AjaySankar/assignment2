@@ -1,0 +1,34 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "CS-648 Full Stack Assignment 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "watch": "babel src --presets @babel/react --out-dir public --watch --verbose",
+    "compile": "babel src --presets @babel/react --out-dir public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AjaySankar/assignment2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AjaySankar/assignment2/issues"
+  },
+  "homepage": "https://github.com/AjaySankar/assignment2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^2.0.2"
+  }
+}
