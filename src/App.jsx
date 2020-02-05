@@ -1,4 +1,4 @@
-const RESET_VALUES = {name: '', price: '', category: '', image: ''}
+const RESET_VALUES = {name: '', price: '$', category: 'Shirts', image: ''}
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -7,19 +7,19 @@ class ProductList extends React.Component {
         products: {
           1 : {
           "name": "Blue Shirt",
-          "price": "16.99",
+          "price": "$16.99",
           "category": "Shirts",
           "image": "https://ae01.alicdn.com/kf/HTB1IeK7d_tYBeNjy1Xdq6xXyVXaa.jpg"
         },
         2 : {
           "name": "Logo Hat",
-          "price": "12.99",
+          "price": "$12.99",
           "category": "Accessories",
           "image": "https://images.swag.com/convert/swag-prod/image-5d7f91e883338b0919bffe9d.png"
         },
         3 : {
           "name": "Regular Fit Jeans",
-          "price": "34.99",
+          "price": "$34.99",
           "category": "Jeans",
           "image": "https://i5.walmartimages.com/asr/a0b2a844-1c46-4d92-8640-4322ebe807f1_1.14b61b891d76f250f38515149d2daf75.jpeg"
         }
@@ -127,7 +127,13 @@ class ProductForm extends React.Component {
     return (
         <form>
             <label>Category</label>
-            <input type="text" name="category" onChange={this.handleChange} value={this.state.product.category} /><br /> 
+            <select name="category" onChange={this.handleChange}>
+              <option value="Shirts">Shirts</option>
+              <option value="Jeans">Jeans</option>
+              <option value="Jackets">Jackets</option>
+              <option value="Sweaters">Sweaters</option>
+              <option value="Accessories">Accessories</option>
+            </select><br />
             <label>Price Per Unit </label> 
             <input type="text" name="price" onChange={this.handleChange} value={this.state.product.price} /><br /> 
             <label>Product Name </label> 

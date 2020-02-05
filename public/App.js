@@ -1,7 +1,7 @@
 const RESET_VALUES = {
   name: '',
-  price: '',
-  category: '',
+  price: '$',
+  category: 'Shirts',
   image: ''
 };
 
@@ -12,19 +12,19 @@ class ProductList extends React.Component {
       products: {
         1: {
           "name": "Blue Shirt",
-          "price": "16.99",
+          "price": "$16.99",
           "category": "Shirts",
           "image": "https://ae01.alicdn.com/kf/HTB1IeK7d_tYBeNjy1Xdq6xXyVXaa.jpg"
         },
         2: {
           "name": "Logo Hat",
-          "price": "12.99",
+          "price": "$12.99",
           "category": "Accessories",
           "image": "https://images.swag.com/convert/swag-prod/image-5d7f91e883338b0919bffe9d.png"
         },
         3: {
           "name": "Regular Fit Jeans",
-          "price": "34.99",
+          "price": "$34.99",
           "category": "Jeans",
           "image": "https://i5.walmartimages.com/asr/a0b2a844-1c46-4d92-8640-4322ebe807f1_1.14b61b891d76f250f38515149d2daf75.jpeg"
         }
@@ -123,12 +123,20 @@ class ProductForm extends React.Component {
   }
 
   render() {
-    return React.createElement("form", null, React.createElement("label", null, "Category"), React.createElement("input", {
-      type: "text",
+    return React.createElement("form", null, React.createElement("label", null, "Category"), React.createElement("select", {
       name: "category",
-      onChange: this.handleChange,
-      value: this.state.product.category
-    }), React.createElement("br", null), React.createElement("label", null, "Price Per Unit "), React.createElement("input", {
+      onChange: this.handleChange
+    }, React.createElement("option", {
+      value: "Shirts"
+    }, "Shirts"), React.createElement("option", {
+      value: "Jeans"
+    }, "Jeans"), React.createElement("option", {
+      value: "Jackets"
+    }, "Jackets"), React.createElement("option", {
+      value: "Sweaters"
+    }, "Sweaters"), React.createElement("option", {
+      value: "Accessories"
+    }, "Accessories")), React.createElement("br", null), React.createElement("label", null, "Price Per Unit "), React.createElement("input", {
       type: "text",
       name: "price",
       onChange: this.handleChange,
