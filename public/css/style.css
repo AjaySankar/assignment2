@@ -1,0 +1,27 @@
+table {
+  border-collapse: collapse;
+}
+
+table {
+  width: 50%;
+}
+
+th {
+  height: 50px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  column-gap: 10px;
+  row-gap: 10px;
+}

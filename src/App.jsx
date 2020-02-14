@@ -127,19 +127,19 @@ class ProductForm extends React.Component {
     return (
         <form>
             <label>Category</label>
+            <label>Price Per Unit </label>
             <select name="category" onChange={this.handleChange}>
               <option value="Shirts">Shirts</option>
               <option value="Jeans">Jeans</option>
               <option value="Jackets">Jackets</option>
               <option value="Sweaters">Sweaters</option>
               <option value="Accessories">Accessories</option>
-            </select><br />
-            <label>Price Per Unit </label> 
-            <input type="text" name="price" onChange={this.handleChange} value={this.state.product.price} /><br /> 
-            <label>Product Name </label> 
-            <input type="text" name="name" onChange={this.handleChange} value={this.state.product.name} /><br /> 
-            <label>Image URL </label> 
-            <input type="text" name="image" onChange={this.handleChange} value={this.state.product.image} /><br /> 
+            </select>
+            <input type="text" name="price" onChange={this.handleChange} value={this.state.product.price} />
+            <label>Product Name </label>
+            <label>Image URL </label>
+            <input type="text" name="name" onChange={this.handleChange} value={this.state.product.name} />
+            <input type="text" name="image" onChange={this.handleChange} value={this.state.product.image} />
             <input type="submit" value="Add Product" onClick={this.handleSave}></input>
         </form>
     )

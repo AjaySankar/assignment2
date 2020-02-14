@@ -123,7 +123,7 @@ class ProductForm extends React.Component {
   }
 
   render() {
-    return React.createElement("form", null, React.createElement("label", null, "Category"), React.createElement("select", {
+    return React.createElement("form", null, React.createElement("label", null, "Category"), React.createElement("label", null, "Price Per Unit "), React.createElement("select", {
       name: "category",
       onChange: this.handleChange
     }, React.createElement("option", {
@@ -136,22 +136,22 @@ class ProductForm extends React.Component {
       value: "Sweaters"
     }, "Sweaters"), React.createElement("option", {
       value: "Accessories"
-    }, "Accessories")), React.createElement("br", null), React.createElement("label", null, "Price Per Unit "), React.createElement("input", {
+    }, "Accessories")), React.createElement("input", {
       type: "text",
       name: "price",
       onChange: this.handleChange,
       value: this.state.product.price
-    }), React.createElement("br", null), React.createElement("label", null, "Product Name "), React.createElement("input", {
+    }), React.createElement("label", null, "Product Name "), React.createElement("label", null, "Image URL "), React.createElement("input", {
       type: "text",
       name: "name",
       onChange: this.handleChange,
       value: this.state.product.name
-    }), React.createElement("br", null), React.createElement("label", null, "Image URL "), React.createElement("input", {
+    }), React.createElement("input", {
       type: "text",
       name: "image",
       onChange: this.handleChange,
       value: this.state.product.image
-    }), React.createElement("br", null), React.createElement("input", {
+    }), React.createElement("input", {
       type: "submit",
       value: "Add Product",
       onClick: this.handleSave
