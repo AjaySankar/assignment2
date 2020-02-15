@@ -29,7 +29,7 @@ form {
 
 form > input, select {
   height: 20px;
-  width: 300px;
+  width: 200px;
 }
 
 input[type=submit] {
@@ -37,7 +37,5 @@ input[type=submit] {
   width: 200px;
   border: none;
   padding: 20px;
-  text-decoration: none;
-  margin: 4px 2px;
   cursor: pointer;
 }
